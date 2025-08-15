@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
-  padding-top: 32px;
+  padding-top: 28px;
 }
 
 .logoLink {
@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  gap: 6.4px;
+  gap: 6.3px;
   font-size: 42px;
   text-decoration: none;
   color: var(--primary);
@@ -20,7 +20,7 @@
 }
 
 .logoLink:hover {
-  filter: brightness(50%);
+  filter: brightness(80%);
 }
 
 .logoLink svg {
