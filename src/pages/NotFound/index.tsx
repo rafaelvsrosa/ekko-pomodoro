@@ -1,18 +1,20 @@
-import { useEffect } from "react";
-import { MainTemplate } from "../../templates/MainTemplate";
-import { GenericHtml } from "../../components/GenericHtml";
-import { Container } from "../../components/Container";
+import { useEffect } from 'react';
+import { Container } from '../../components/Container';
+import { GenericHtml } from '../../components/GenericHtml';
+import { Heading } from '../../components/Heading';
+import { RouterLink } from '../../components/RouterLink';
+import { MainTemplate } from '../../templates/MainTemplate';
 
 export function NotFound() {
   useEffect(() => {
-    document.title = "Página não encontrada - Chronos Pomodoro";
+    document.title = 'Página não encontrada - Chronos Pomodoro';
   }, []);
 
   return (
     <MainTemplate>
       <Container>
         <GenericHtml>
-          <h1>404 - Página não encontrada 🚀</h1>
+          <Heading>404 - Página não encontrada 🚀</Heading>
           <p>
             Opa! Parece que a página que você está tentando acessar não existe.
             Talvez ela tenha tirado férias, resolvido explorar o universo ou se
@@ -20,8 +22,9 @@ export function NotFound() {
           </p>
           <p>
             Mas calma, você não está perdido no espaço (ainda). Dá pra voltar em
-            segurança para a página principal ou para o histórico — ou pode
-            ficar por aqui e fingir que achou uma página secreta que só os
+            segurança para a <RouterLink href='/'>página principal</RouterLink>{' '}
+            ou <RouterLink href='/history/'>para o histórico</RouterLink> — ou
+            pode ficar por aqui e fingir que achou uma página secreta que só os
             exploradores mais legais conseguem acessar. 🧭✨
           </p>
           <p>

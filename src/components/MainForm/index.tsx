@@ -14,6 +14,7 @@ import { showMessage } from "../../adapters/showMessage";
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
   const tasknameInput = useRef<HTMLInputElement>(null);
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || "";
 
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
@@ -49,7 +50,7 @@ export function MainForm() {
 
   function handleInterruptTask() {
     showMessage.dissmisss();
-    showMessage.error('Tarefa interrompida');
+    showMessage.error("Tarefa interrompida");
     dispatch({ type: TaskActionsTypes.INTERRUPT_TASK });
   }
 
@@ -57,12 +58,13 @@ export function MainForm() {
     <form onSubmit={handleCreateNewTask} className="form" action="">
       <div className="formRow">
         <DefaultInput
-          labelText="Tarefa"
+          labelText="Tarefa:"
           id="MeuInput"
           type="text"
-          placeholder="Digite algo"
+          placeholder="Digite sua tarefa"
           ref={tasknameInput}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         />
       </div>
 
