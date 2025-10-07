@@ -6,9 +6,13 @@ import { Heading } from "../../components/Heading";
 import { DefaultButton } from "../../components/DefaultButton";
 import { TrashIcon } from "lucide-react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { formatDate } from "../../utils/fotmatDate";
+import { getTaskStatus } from "../../utils/getTaskStatus";
+import { sortTasks } from "../../utils/sortTasks";
 
 export function History() {
-  const {state} = useTaskContext()
+  const { state } = useTaskContext();
+  const sortedTasks = sortTasks({tasks: state.tasks});
 
   return (
     <MainTemplate>
@@ -40,16 +44,22 @@ export function History() {
             </thead>
 
             <tbody>
-              {state.tasks.map(task => {
+              {sortedTasks.map((task) => {
+                const taskTypeDictionary = {
+                  workTime: "Foco",
+                  shortBreakTime: "Descanso curto",
+                  longBreakTime: "Descanso longo",
+                };
+
                 return (
-                   <tr key={task.id}>
-                <td>{task.name}</td>
-                <td>{task.duration}min</td>
-                <td>{new Date(task.startDate).toISOString()}</td>
-                <td>{task.interruptDate}</td>
-                <td>{task.type}</td>
-              </tr>
-                )
+                  <tr key={task.id}>
+                    <td>{task.name}</td>
+                    <td>{task.duration}min</td>
+                    <td>{formatDate(task.startDate)}</td>
+                    <td>{getTaskStatus(task, state.activeTask)}</td>
+                    <td>{taskTypeDictionary[task.type]}</td>
+                  </tr>
+                );
               })}
               <tr>
                 <td>Estudar</td>
