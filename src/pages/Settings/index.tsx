@@ -4,15 +4,20 @@ import { DefaultButton } from "../../components/DefaultButton";
 import { DefaultInput } from "../../components/DefaultInput";
 import { Heading } from "../../components/Heading";
 import { MainTemplate } from "../../templates/MainTemplate";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { showMessage } from "../../adapters/showMessage";
+import { TaskActionsTypes } from "../../contexts/TaskContext/taskActions";
 
 export function Settings() {
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
   const workTimeInput = useRef<HTMLInputElement>(null);
   const shortBreakTimeInput = useRef<HTMLInputElement>(null);
   const longBreakTimeInput = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+      document.title = "Configurações - Ekko Pomodoro";
+    }, []);
 
   function handleSaveSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,6 +51,14 @@ export function Settings() {
       });
       return;
     }
+
+    dispatch({type: TaskActionsTypes.CHANGE_SETTINGS, payload: {
+      workTime,
+      shortBreakTime,
+      longBreakTime,
+    },
+  });
+  showMessage.success('Configurações salvas')
   }
 
   return (

@@ -23,14 +23,14 @@ export function taskReducer(
         tasks: [...state.tasks, newTask],
       };
     }
-  
+
     case TaskActionsTypes.INTERRUPT_TASK: {
       return {
         ...state,
         activeTask: null,
         secondsRemaining: 0,
-        formattedSecondsRemaining: '00:00',
-        tasks: state.tasks.map(task => {
+        formattedSecondsRemaining: "00:00",
+        tasks: state.tasks.map((task) => {
           if (state.activeTask && state.activeTask.id === task.id) {
             return { ...task, interruptDate: Date.now() };
           }
@@ -43,8 +43,8 @@ export function taskReducer(
         ...state,
         activeTask: null,
         secondsRemaining: 0,
-        formattedSecondsRemaining: '00:00',
-        tasks: state.tasks.map(task => {
+        formattedSecondsRemaining: "00:00",
+        tasks: state.tasks.map((task) => {
           if (state.activeTask && state.activeTask.id === task.id) {
             return { ...task, completeDate: Date.now() };
           }
@@ -53,16 +53,21 @@ export function taskReducer(
       };
     }
     case TaskActionsTypes.RESET_STATE: {
-      return {...initialTaskState};
+      return { ...initialTaskState };
     }
     case TaskActionsTypes.COUNT_DOWN: {
       return {
         ...state,
         secondsRemaining: action.payload.secondsRemaning,
         formattedSecondsRemaining: formattedSecondToMinutes(
-          action.payload.secondsRemaning,
+          action.payload.secondsRemaning
         ),
-      }
       };
     }
+    case TaskActionsTypes.CHANGE_SETTINGS: {
+      return { ...state, config: { ...action.payload } };
+    }
   }
+
+  return state;
+}
