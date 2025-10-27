@@ -6,7 +6,7 @@
   min-width: 240px;
   padding: 8px;
   border-radius: 8px;
-  margin: 48px 0;
+  margin: 30px;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
@@ -27,5 +27,5 @@
 
 .red {
   background: var(--error);
-  color: var(--text-over-primary);
+  color: var(--text-over-error);
 }

@@ -21,7 +21,7 @@ export function MainForm() {
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    showMessage.dissmisss();
+    showMessage.dismiss();
 
     if (tasknameInput.current === null) return;
 
@@ -49,7 +49,7 @@ export function MainForm() {
   }
 
   function handleInterruptTask() {
-    showMessage.dissmisss();
+    showMessage.dismiss();
     showMessage.error("Tarefa interrompida");
     dispatch({ type: TaskActionsTypes.INTERRUPT_TASK });
   }
@@ -61,7 +61,7 @@ export function MainForm() {
           labelText="Tarefa:"
           id="MeuInput"
           type="text"
-          placeholder="Digite sua tarefa"
+          placeholder="Ex: estudar para a prova"
           ref={tasknameInput}
           disabled={!!state.activeTask}
           defaultValue={lastTaskName}

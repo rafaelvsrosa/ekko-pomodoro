@@ -1,28 +1,34 @@
-.input {
+.formSettings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 22px;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.inputSettings {
   width: 100%;
   background-color: transparent;
-  border: none;
-  border-bottom: 2px solid var(--primary);
   font-size: 18px;
   color: var(--text-default);
   text-align: center;
   padding: 9px;
   transition: all 0.1s ease-in-out;
-}
-
-.input:focus {
   outline: 2px solid var(--primary);
-  border-radius: 8px;
+  border-radius: 10px;
   border-bottom: 2px solid transprent;
+  border-color: var(--primary);
 }
 
-.input::placeholder {
+.inputSettings::placeholder {
   font-size: 14px;
   font-style: italic;
   opacity: 0.5;
 }
 
-.input:disabled {
+.inputSettings:disabled {
   border-bottom: 2px solid var(--disabled);
   color: var(--text-muted);
 }

@@ -4,7 +4,7 @@ import { Container } from "../../components/Container";
 import { MainTemplate } from "../../templates/MainTemplate";
 import { Heading } from "../../components/Heading";
 import { DefaultButton } from "../../components/DefaultButton";
-import { TrashIcon } from "lucide-react";
+import { Trash2Icon } from "lucide-react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { formatDate } from "../../utils/fotmatDate";
 import { getTaskStatus } from "../../utils/getTaskStatus";
@@ -12,6 +12,7 @@ import { sortTasks, type SortTasksOptions } from "../../utils/sortTasks";
 import { useEffect, useState } from "react";
 import { showMessage } from "../../adapters/showMessage";
 import { TaskActionsTypes } from "../../contexts/TaskContext/taskActions";
+import { Footer } from "../../components/Footer";
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -53,7 +54,7 @@ export function History() {
 
   useEffect(() => {
     return () => {
-      showMessage.dissmisss();
+      showMessage.dismiss();
     };
   }, []);
 
@@ -72,8 +73,8 @@ export function History() {
   }
 
   function hanldeResetHistory() {
-    showMessage.dissmisss();
-    showMessage.confirm("Tem certeza?", (confirmation) => {
+    showMessage.dismiss();
+    showMessage.confirm("Tem certeza que deseja apagar todo seu histórico?", (confirmation) => {
       setConfirmClearHistory(confirmation);
     });
   }
@@ -82,11 +83,11 @@ export function History() {
     <MainTemplate>
       <Container>
         <Heading>
-          <span>Histórico</span>
+          <span style={{ textAlign: 'center', fontWeight: 'bold' }}>Histórico</span>
           {hasTasks && (
             <span className={styles.buttonContainer}>
               <DefaultButton
-                icon={<TrashIcon />}
+                icon={<Trash2Icon />}
                 color="red"
                 aria-label="Apagar todo o histórico"
                 title="Apagar histórico"
@@ -107,19 +108,19 @@ export function History() {
                     onClick={() => handleSortTasks({ field: "name" })}
                     className={styles.thSort}
                   >
-                    Tarefa ↕
+                    Tarefa ⬍
                   </th>
                   <th
                     onClick={() => handleSortTasks({ field: "duration" })}
                     className={styles.thSort}
                   >
-                    Duração ↕
+                    Duração ⬍
                   </th>
                   <th
                     onClick={() => handleSortTasks({ field: "startDate" })}
                     className={styles.thSort}
                   >
-                    Data ↕
+                    Data ⬍
                   </th>
                   <th>Status</th>
                   <th>Tipo</th>
@@ -150,11 +151,15 @@ export function History() {
         )}
 
         {!hasTasks && (
-          <p style={{ textAlign: "center", fontWeight: "bold" }}>
-            Ainda não existem tarefas criadas.
+          <p className={styles.p}>
+            Ainda não existem tarefas no seu histórico 🫠 🫠 <br /> Crie algumas tarefas e volte!
           </p>
         )}
       </Container>
     </MainTemplate>
   );
+
+  <footer>
+    <Footer />
+  </footer>;
 }

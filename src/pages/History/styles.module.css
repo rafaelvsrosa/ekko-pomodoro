@@ -1,4 +1,9 @@
 .buttonContainer button {
+  border: 0;
+  background-color: var(--error);
+  color: var(--text-over-error);
+  cursor: pointer;
+  border-radius: 8px;
   min-width: auto;
   margin: 0;
   padding: 10px;
@@ -43,4 +48,11 @@
 
 .thSort:hover {
   filter: brightness(80%);
+}
+
+.p {
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.6;
+  padding-top: 22px;
 }

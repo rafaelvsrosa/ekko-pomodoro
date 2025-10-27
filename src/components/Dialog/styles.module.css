@@ -1,16 +1,20 @@
 .container {
   display: flex;
   flex-direction: column;
-  flex: 1;
   align-items: center;
   justify-content: center;
-  gap: 1.6rem;
+  gap: 16px;
   text-align: center;
+  background: var(--gray-200);
+  border: 3px solid var(--warning);
+  border-radius: 35px;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 .buttonsContainer {
   display: flex;
-  gap: 1.6rem;
+  gap: 18px;
 }
 
 .buttonsContainer button {
@@ -19,6 +23,17 @@
 }
 
 .buttonsContainer svg {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 20px;
+  height: 20px;
+}
+
+:global(.Toastify__toast.dialogToast) {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  color: var(--gray-800) !important;
+  opacity: 1 !important;
 }
